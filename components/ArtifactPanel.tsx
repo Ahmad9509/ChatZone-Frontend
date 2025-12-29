@@ -74,6 +74,8 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
 
   // Close dropdowns when clicking outside
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const handleClickOutside = (event: MouseEvent) => {
       if (copyDropdownRef.current && !copyDropdownRef.current.contains(event.target as Node)) {
         setShowCopyDropdown(false);
@@ -271,7 +273,7 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
     switch (currentVersion.type) {
       case 'markdown':
         // Load marked if not already loaded
-        if (!(window as any).marked) {
+        if (typeof window !== 'undefined' && !(window as any).marked) {
           const markedScript = document.createElement('script');
           markedScript.src = 'https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js';
           markedScript.async = true;
@@ -348,6 +350,7 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
     `;
 
     // Generate PDF
+    if (typeof window === 'undefined') return;
     const element = document.createElement('div');
     element.innerHTML = styledHtml;
     
@@ -395,11 +398,11 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
 
   // Save manual edit
   const handleSaveManualEdit = async () => {
-    if (!currentVersion || !editedContent) return;
+    if (!currentVersion || !editedContent || typeof window === 'undefined') return;
 
     setIsSaving(true);
     try {
-      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      const token = localStorage.getItem('token');
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/artifacts/${currentVersion._id}`, {
         method: 'PATCH',
         headers: {
@@ -471,7 +474,8 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
     let streamedReplacement = '';
 
     try {
-      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      if (typeof window === 'undefined') return;
+      const token = localStorage.getItem('token');
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/artifacts/${currentVersion._id}/apply-selection-edit`, {
         method: 'POST',
         headers: {
