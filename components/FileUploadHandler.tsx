@@ -23,37 +23,6 @@ const ALL_SUPPORTED = [...SUPPORTED_FORMATS.documents, ...SUPPORTED_FORMATS.imag
 
 import { TierConfig } from '@/types/chat';
 
-// Remove local TierConfig interface - now imported from types/chat.ts
-  deepResearch?: {
-    hasDeepResearch: boolean;
-    deepResearchLimit: number;
-    deepResearchMaxSources: number;
-  };
-  designs?: {
-    hasDesigns: boolean;
-    designsLimit: number;
-    aiImageGenerationsLimit: number;
-    canUseQwen: boolean;
-    canUseImagen: boolean;
-    canExportPNG: boolean;
-    canExportJPG: boolean;
-    canExportPDF: boolean;
-  };
-  presentations?: {
-    hasPresentations: boolean;
-    presentationsLimit: number;
-    maxSlidesPerPresentation: number;
-    canExportPPTX: boolean;
-    canExportPDF: boolean;
-  };
-  features?: {
-    hasRAG: boolean;
-    hasProjects: boolean;
-    hasProReplies: boolean;
-    hasVision: boolean;
-  };
-}
-
 interface FileUploadHandlerProps {
   onFilesSelected: (files: File[]) => void;
   tier: string;
