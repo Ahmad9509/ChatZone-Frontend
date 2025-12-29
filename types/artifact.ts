@@ -8,6 +8,7 @@ export interface Artifact {
   content: string;
   version: number;
   messageId: string;
+  conversationId?: string;
   parentArtifactId?: string;
   metadata?: string;
 }
