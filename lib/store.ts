@@ -52,6 +52,7 @@ interface User {
   preferredModelId?: string;
   tierConfig?: TierConfig | null;
   createdAt: string;
+  newChatDraft?: string;
 }
 
 interface AttachedFile {
