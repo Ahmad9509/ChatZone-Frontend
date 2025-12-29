@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useStore } from '@/lib/store';
+import { TierConfig } from '@/types/chat';
 
 const SUPPORTED_FORMATS = {
   documents: [
@@ -20,8 +21,6 @@ const SUPPORTED_FORMATS = {
 };
 
 const ALL_SUPPORTED = [...SUPPORTED_FORMATS.documents, ...SUPPORTED_FORMATS.images];
-
-import { TierConfig } from '@/types/chat';
 
 interface FileUploadHandlerProps {
   onFilesSelected: (files: File[]) => void;
