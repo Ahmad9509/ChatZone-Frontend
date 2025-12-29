@@ -221,13 +221,14 @@ export async function sendMessage(params: SendMessageParams): Promise<void> {
       }
     }
 
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL || 'https://chatzone-api-b8h3g0c4hydccrcy.eastus-01.azurewebsites.net'}/api/chat/conversations/${conversationId}/messages`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${token || ''}`,
         },
         body: JSON.stringify({
           content: userMessage,
@@ -523,13 +524,14 @@ export async function editMessage(params: EditMessageParams): Promise<void> {
   setShowInitialLoader(true); // Show immediately, no delay
 
   try {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL || 'https://chatzone-api-b8h3g0c4hydccrcy.eastus-01.azurewebsites.net'}/api/chat/conversations/${conversationId}/edit-message/${messageId}`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${token || ''}`,
         },
         body: JSON.stringify({
           content: editedContent,

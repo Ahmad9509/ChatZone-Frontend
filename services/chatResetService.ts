@@ -45,7 +45,9 @@ export function resetChatState(params: ResetChatParams): void {
   activeStreamingConversationIdRef.current = null;
 
   setCurrentConversation(null);
-  localStorage.removeItem('cz.currentConversationId');
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('cz.currentConversationId');
+  }
   setMessage('');
   setStreamedContent('');
   setStreaming(false);
