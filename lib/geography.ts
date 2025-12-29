@@ -42,7 +42,7 @@ const WESTERN_COUNTRIES = [
 export async function detectCountry(): Promise<string | null> {
   try {
     // Use ip-api.com for free IP geolocation
-    const response = await fetch('http://ip-api.com/json/', {
+    const response = await fetch('https://ip-api.com/json/', {
       cache: 'no-store',
     });
 

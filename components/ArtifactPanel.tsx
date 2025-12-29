@@ -96,7 +96,7 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
 
     setLoadingVersions(true);
     try {
-      const token = localStorage.getItem('token');
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
       const response = await fetch(
         `/api/artifacts/${artifact._id}/versions?conversationId=${conversationId}`,
         {
@@ -234,6 +234,8 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
       currentVersion.language
     );
 
+    if (typeof window === 'undefined') return;
+    
     const blob = new Blob([markdownContent], { type: 'text/markdown' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -248,7 +250,7 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
 
   // Download as PDF
   const handleDownloadAsPDF = async () => {
-    if (!currentVersion) return;
+    if (!currentVersion || typeof window === 'undefined') return;
 
     // Dynamically load html2pdf library
     if (!(window as any).html2pdf) {
@@ -397,7 +399,7 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
 
     setIsSaving(true);
     try {
-      const token = localStorage.getItem('token');
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/artifacts/${currentVersion._id}`, {
         method: 'PATCH',
         headers: {
@@ -469,7 +471,7 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
     let streamedReplacement = '';
 
     try {
-      const token = localStorage.getItem('token');
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/artifacts/${currentVersion._id}/apply-selection-edit`, {
         method: 'POST',
         headers: {
