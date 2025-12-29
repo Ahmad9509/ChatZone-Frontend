@@ -41,13 +41,57 @@ export interface ModelSwitchNotification {
   message: string;
 }
 
+export interface TierConfig {
+  _id: string;
+  tierName: string;
+  displayName: string;
+  deepResearch?: {
+    hasDeepResearch: boolean;
+    deepResearchLimit: number;
+    deepResearchMaxSources: number;
+  };
+  designs?: {
+    hasDesigns: boolean;
+    designsLimit: number;
+    aiImageGenerationsLimit: number;
+    canUseQwen: boolean;
+    canUseImagen: boolean;
+    canExportPNG: boolean;
+    canExportJPG: boolean;
+    canExportPDF: boolean;
+  };
+  presentations?: {
+    hasPresentations: boolean;
+    presentationsLimit: number;
+    maxSlidesPerPresentation: number;
+    canExportPPTX: boolean;
+    canExportPDF: boolean;
+  };
+  features?: {
+    hasRAG: boolean;
+    hasProjects: boolean;
+    hasProReplies: boolean;
+    hasVision: boolean;
+  };
+}
+
 export interface User {
   _id: string;
   email: string;
   name: string;
-  username?: string;
-  tier: 'free' | 'pro' | 'premium';
+  username: string;
+  profilePicture?: string;
+  tier: string;
+  tokenUsage: { total: number; thisMonth: number };
+  messageCount: number;
+  proRepliesCount: { total: number; daily: number };
+  referralCode: string;
+  customInstructions?: { aboutYou?: string; responseStyle?: string };
+  settings: any;
+  lastModelUsed?: string;
   preferredModelId?: string;
+  tierConfig?: TierConfig | null;
+  createdAt: string;
   newChatDraft?: string;
 }
 
