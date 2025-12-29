@@ -14,9 +14,12 @@ const api = axios.create({
 
 // Add token to requests if available
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  // Only access localStorage on client side
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 });
@@ -26,8 +29,11 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
+      // Only access browser APIs on client side
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
@@ -147,6 +153,9 @@ export const research = {
   getResearchStatus: (jobId: string) => {
     // WHAT THIS DOES: Returns an EventSource for SSE streaming
     // EventSource doesn't support custom headers, so token must be passed via URL query parameter
+    if (typeof window === 'undefined') {
+      throw new Error('EventSource is only available in browser environment');
+    }
     const token = localStorage.getItem('token');
     const url = `${API_URL}/api/research/status/${jobId}?token=${encodeURIComponent(token || '')}`;
     const eventSource = new EventSource(url, {
