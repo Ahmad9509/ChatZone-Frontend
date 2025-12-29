@@ -21,10 +21,9 @@ const SUPPORTED_FORMATS = {
 
 const ALL_SUPPORTED = [...SUPPORTED_FORMATS.documents, ...SUPPORTED_FORMATS.images];
 
-interface TierConfig {
-  _id: string;
-  tierName: string;
-  displayName: string;
+import { TierConfig } from '@/types/chat';
+
+// Remove local TierConfig interface - now imported from types/chat.ts
   deepResearch?: {
     hasDeepResearch: boolean;
     deepResearchLimit: number;
