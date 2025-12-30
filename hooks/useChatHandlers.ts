@@ -188,7 +188,7 @@ export function useChatHandlers(params: UseChatHandlersParams) {
       setSearchProgress,
       setResearchQueries,
       setIsThinking,
-      setThinkingContent: (val) => setThinkingContent(val),
+      setThinkingContent: (val) => setThinkingContent(typeof val === "function" ? val("") : val),
       setThinkingSteps: (val) => setThinkingSteps(val),
       setShowInitialLoader,
       activeStreamingConversationIdRef,
