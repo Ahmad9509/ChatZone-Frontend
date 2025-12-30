@@ -54,7 +54,7 @@ interface UseChatHandlersParams {
   
   // Thinking state
   setIsThinking: (thinking: boolean) => void;
-  setThinkingContent: (content: string) => void;
+  setThinkingContent: (content: string | ((prev: string) => string)) => void;
   setThinkingSteps: (steps: any[] | ((prev: any[]) => any[])) => void;
   setShowInitialLoader: (show: boolean) => void;
   
