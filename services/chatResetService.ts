@@ -12,8 +12,8 @@ interface ResetChatParams {
   setSearchProgress: (progress: any[]) => void;
   setResearchQueries: (queries: string[]) => void;
   setIsThinking: (thinking: boolean) => void;
-  setThinkingContent: (content: string) => void;
-  setThinkingSteps: (steps: any[]) => void;
+  setThinkingContent: (content: string | ((prev: string) => string)) => void;
+  setThinkingSteps: (steps: any[] | ((prev: any[]) => any[])) => void;
   setShowInitialLoader: (show: boolean) => void;
   activeStreamingConversationIdRef: React.MutableRefObject<string | null>;
   setCurrentEventStream: (stream: any) => void;
