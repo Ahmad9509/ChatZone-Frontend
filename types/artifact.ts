@@ -2,7 +2,7 @@
 
 export interface Artifact {
   _id: string;
-  type: 'html' | 'code' | 'svg' | 'markdown' | 'react' | 'vue' | 'json' | 'csv' | 'mermaid' | 'document';
+  type: 'html' | 'code' | 'svg' | 'markdown' | 'react' | 'vue' | 'json' | 'csv' | 'mermaid' | 'document' | 'presentation';
   title: string;
   language?: string;
   content: string;
@@ -10,6 +10,8 @@ export interface Artifact {
   messageId: string;
   parentArtifactId?: string;
   metadata?: string;
+  conversationId?: string;
+  createdAt?: string;
 }
 
 export interface ArtifactMeta {

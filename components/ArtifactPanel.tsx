@@ -11,18 +11,10 @@ import SVGRenderer from './renderers/SVGRenderer';
 import MermaidRenderer from './renderers/MermaidRenderer';
 import MarkdownRenderer from './renderers/MarkdownRenderer';
 import DataRenderer from './renderers/DataRenderer';
+import { Artifact } from '@/types/artifact';
 
-export interface Artifact {
-  _id: string;
-  type: 'html' | 'code' | 'svg' | 'markdown' | 'react' | 'vue' | 'json' | 'csv' | 'mermaid' | 'document' | 'presentation';
-  title: string;
-  language?: string;
-  content: string;
-  version: number;
-  messageId: string;
-  conversationId?: string;
-  createdAt?: string;
-}
+// Re-export Artifact for backward compatibility
+export type { Artifact } from '@/types/artifact';
 
 interface ArtifactPanelProps {
   artifact: Artifact | null;
