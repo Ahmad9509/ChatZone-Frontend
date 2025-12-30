@@ -492,8 +492,11 @@ export default function ArtifactPanel({ artifact, isStreaming = false, onClose, 
           }
         },
 
-        onComplete: async (assistantMessageId, fullResponse) => {
+        onComplete: async (data) => {
           // Streaming complete - create new artifact version
+          // Extract values from data object (matching sseHandler type signature)
+          const assistantMessageId = data.message;
+          const fullResponse = data.conversation;
           try {
             const finalContent = beforeSelection + streamedReplacement + afterSelection;
             
