@@ -12,26 +12,22 @@ export const layoutDescription = 'A slide layout with title, description, chart 
 const barPieLineAreaChartDataSchema = z.object({
     type: z.union([z.literal('bar'), z.literal('pie'), z.literal('line'), z.literal('area')]),
     data: z.array(z.object({
-        name: z.string().meta({ description: "Data point name" }),
-        value: z.number().meta({ description: "Data point value" }),
+        name: z.string(),
+        value: z.number(),
     })).min(2).max(5)
 })
 
 const scatterChartDataSchema = z.object({
     type: z.literal('scatter'),
     data: z.array(z.object({
-        x: z.number().meta({ description: "X coordinate" }),
-        y: z.number().meta({ description: "Y coordinate" }),
+        x: z.number(),
+        y: z.number(),
     })).min(2).max(20)
 })
 
 const chartWithBulletsSlideSchema = z.object({
-    title: z.string().min(3).max(40).default('Market Size').meta({
-        description: "Main title of the slide",
-    }),
-    description: z.string().min(10).max(150).default('Businesses face challenges with outdated technology and rising costs, limiting efficiency and growth in competitive markets.').meta({
-        description: "Description text below the title",
-    }),
+    title: z.string().min(3).max(40).default('Market Size'),
+    description: z.string().min(10).max(150).default('Businesses face challenges with outdated technology and rising costs, limiting efficiency and growth in competitive markets.'),
     chartData: z.union([barPieLineAreaChartDataSchema, scatterChartDataSchema]).default({
         type: 'scatter',
         data: [
@@ -43,22 +39,12 @@ const chartWithBulletsSlideSchema = z.object({
         ]
     }
     ),
-    color: z.string().default('#3b82f6').meta({
-        description: "Primary color for chart elements",
-    }),
-    showLegend: z.boolean().default(false).meta({
-        description: "Whether to show chart legend",
-    }),
-    showTooltip: z.boolean().default(true).meta({
-        description: "Whether to show chart tooltip",
-    }),
+    color: z.string().default('#3b82f6'),
+    showLegend: z.boolean().default(false),
+    showTooltip: z.boolean().default(true),
     bulletPoints: z.array(z.object({
-        title: z.string().min(2).max(80).meta({
-            description: "Bullet point title",
-        }),
-        description: z.string().min(10).max(150).meta({
-            description: "Bullet point description",
-        }),
+        title: z.string().min(2).max(80),
+        description: z.string().min(10).max(150),
         icon: IconSchema,
     })).min(1).max(3).default([
         {
@@ -85,9 +71,7 @@ const chartWithBulletsSlideSchema = z.object({
                 __icon_query__: 'trending up growth'
             }
         }
-    ]).meta({
-        description: "List of bullet points with colored boxes and icons",
-    })
+    ])
 })
 
 export const Schema = chartWithBulletsSlideSchema

@@ -3,21 +3,13 @@ import React from 'react'
 import * as z from "zod";
 
 const ImageSchema = z.object({
-    __image_url__: z.string().url().default("https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1200&auto=format&fit=crop").meta({
-      description: "URL to image",
-    }),
-    __image_prompt__: z.string().min(10).max(200).default("Elegant abstract green themed background for a presentation slide, minimal shapes, soft lighting").meta({
-      description: "Prompt used to generate the image. Max 40 words",
-    }),
+    __image_url__: z.string().url().default("https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1200&auto=format&fit=crop"),
+    __image_prompt__: z.string().min(10).max(200).default("Elegant abstract green themed background for a presentation slide, minimal shapes, soft lighting"),
   })
   
   const IconSchema = z.object({
-    __icon_url__: z.string().default("https://static.thenounproject.com/png/1783767-200.png").meta({
-      description: "URL to icon",
-    }),
-    __icon_query__: z.string().min(3).max(40).default("leaf growth").meta({
-      description: "Query used to search the icon. Max 6 words",
-    }),
+    __icon_url__: z.string().default("https://static.thenounproject.com/png/1783767-200.png"),
+    __icon_query__: z.string().min(3).max(40).default("leaf growth"),
   })
   
   const layoutId = "header-tagline-cards-grid-slide"
@@ -25,39 +17,23 @@ const ImageSchema = z.object({
   const layoutDescription = "A slide with a top utility row, a header, a tagline, and a grid of cards each with a number block and text"
   
   const CardSchema = z.object({
-    number: z.string().min(1).max(5).default("45").meta({
-      description: "Main number text inside number block. 1 to 3 digits",
-    }),
-    numberSymbol: z.string().min(0).max(3).default("%").meta({
-      description: "Optional symbol next to the number. Single character",
-    }),
-    subtitle: z.string().min(8).max(28).default("Subtitle Here").meta({
-      description: "Card subtitle. Max 5 words",
-    }),
-    body: z.string().min(20).max(100).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.").meta({
-      description: "Card body text. Max 100 characters",
-    }),
+    number: z.string().min(1).max(5).default("45"),
+    numberSymbol: z.string().min(0).max(3).default("%"),
+    subtitle: z.string().min(8).max(28).default("Subtitle Here"),
+    body: z.string().min(20).max(100).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do."),
     icon: IconSchema.default({
       __icon_url__: "https://static.thenounproject.com/png/1783767-200.png",
       __icon_query__: "progress indicator",
-    }).meta({
-      description: "Optional icon for the card header area",
     }),
   })
   
   const Schema = z.object({
    
-    title: z.string().min(12).max(70).default("Scaling New Heights Together").meta({
-      description: "Main title. Single line up to ~34 chars or two lines up to ~70 chars. Max 9 words",
-    }),
-    tagline: z.string().min(40).max(120).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna").meta({
-      description: "Subtitle/tagline under title. Max 20 words",
-    }),
+    title: z.string().min(12).max(70).default("Scaling New Heights Together"),
+    tagline: z.string().min(40).max(120).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna"),
     decorativeLine: ImageSchema.default({
       __image_url__: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='2' viewBox='0 0 220 2'><rect width='220' height='2' rx='1' fill='%230B8E26'/></svg>",
       __image_prompt__: "Thin green horizontal line divider, 220x2, rounded ends",
-    }).meta({
-      description: "SVG decorative line asset",
     }),
     cards: z.array(CardSchema).min(1).max(6).default([
       {
@@ -102,9 +78,7 @@ const ImageSchema = z.object({
         body: "Committed to sustainability through significant carbon reduction and environmental initiatives.",
         icon: { __icon_url__: "https://static.thenounproject.com/png/1783767-200.png", __icon_query__: "leaf sustainability icon" },
       },
-    ]).meta({
-      description: "Grid of cards with number block, subtitle, and body (<=100 chars)",
-    }),
+    ]),
     // chart and diagram removed
   })
   

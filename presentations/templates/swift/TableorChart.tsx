@@ -31,7 +31,7 @@ const TableRowSchema = z.object({
     .min(2)
     .max(10)
     .default(["Row 1", "Value", "Value"])
-    .meta({ description: "Row cells; count should match columns length" }),
+    ,
 })
 
 const Schema = z

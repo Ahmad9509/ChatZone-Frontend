@@ -21,8 +21,8 @@ const layoutName = 'Chart Left Text Right'
 const layoutDescription = 'A slide with header label, a left-side inline bar chart, and right-side title with paragraph.'
 
 const ChartDatumSchema = z.object({
-  label: z.string().min(1).max(12).default('A').meta({ description: 'Category label' }),
-  value: z.number().min(0).max(100).default(60).meta({ description: 'Value 0–100' }),
+  label: z.string().min(1).max(12).default('A'),
+  value: z.number().min(0).max(100).default(60),
 })
 
 const Schema = z.object({
@@ -32,7 +32,7 @@ const Schema = z.object({
     .min(16)
     .max(64)
     .default('Insights At A Glance')
-    .meta({ description: 'Main heading (max ~7 words)' }),
+    ,
   paragraph: z
     .string()
     .min(50)
@@ -40,7 +40,7 @@ const Schema = z.object({
     .default(
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     )
-    .meta({ description: 'Supporting description' }),
+    ,
   chart: z
     .object({
       type: z.enum(['bar', 'horizontalBar', 'line', 'pie']).default('line'),

@@ -7,23 +7,13 @@ export const layoutName = 'Intro Slide'
 export const layoutDescription = 'A clean slide layout with title, description text, presenter info, and a supporting image.'
 
 const introSlideSchema = z.object({
-    title: z.string().min(3).max(40).default('Product Overview').meta({
-        description: "Main title of the slide",
-    }),
-    description: z.string().min(10).max(150).default('Our product offers customizable dashboards for real-time reporting and data-driven decisions. It integrates with third-party tools to enhance operations and scales with business growth for improved efficiency.').meta({
-        description: "Main description text content",
-    }),
-    presenterName: z.string().min(2).max(50).default('John Doe').meta({
-        description: "Name of the presenter",
-    }),
-    presentationDate: z.string().min(2).max(50).default('December 2025').meta({
-        description: "Date of the presentation must be the latest date like today's date",
-    }),
+    title: z.string().min(3).max(40).default('Product Overview'),
+    description: z.string().min(10).max(150).default('Our product offers customizable dashboards for real-time reporting and data-driven decisions. It integrates with third-party tools to enhance operations and scales with business growth for improved efficiency.'),
+    presenterName: z.string().min(2).max(50).default('John Doe'),
+    presentationDate: z.string().min(2).max(50).default('December 2025'),
     image: ImageSchema.default({
         __image_url__: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
         __image_prompt__: 'Business team in meeting room discussing product features and solutions'
-    }).meta({
-        description: "Supporting image for the slide",
     })
 })
 

@@ -8,15 +8,9 @@ export const layoutDescription =
   "A slide layout designed to present a solution to previously identified problems, showcasing key aspects of the solution with sections and icons.";
 
 const solutionSlideSchema = z.object({
-  companyName: z.string().min(2).max(50).default("chatzone").meta({
-    description: "Company name displayed in header",
-  }),
-  date: z.string().min(5).max(30).default("June 13, 2038").meta({
-    description: "Today Date displayed in header",
-  }),
-  title: z.string().min(3).max(25).default("Businesses struggle").meta({
-    description: "Main title of the slide",
-  }),
+  companyName: z.string().min(2).max(50).default("chatzone"),
+  date: z.string().min(5).max(30).default("June 13, 2038"),
+  title: z.string().min(3).max(25).default("Businesses struggle"),
   mainDescription: z
     .string()
     .min(20)
@@ -24,21 +18,13 @@ const solutionSlideSchema = z.object({
     .default(
       "Show that we offer a solution that solves the problems previously described and identified. Make sure that the solutions we offer uphold the values of effectiveness, efficiency, and are highly relevant to the market situation and society is here and what is hsd sdksdf klfdslkf lkflkfsldkf.",
     )
-    .meta({
-      description: "Main content text describing the solution",
-    }),
+    ,
   sections: z
     .array(
       z.object({
-        title: z.string().min(3).max(30).meta({
-          description: "Section title",
-        }),
-        description: z.string().min(5).max(70).meta({
-          description: "Section description",
-        }),
-        icon: IconSchema.optional().meta({
-          description: "Icon for the section",
-        }),
+        title: z.string().min(3).max(30),
+        description: z.string().min(5).max(70),
+        icon: IconSchema.optional(),
       }),
     )
     .min(2)
@@ -82,10 +68,7 @@ const solutionSlideSchema = z.object({
         },
       },
     ])
-    .meta({
-      description:
-        "List of solution sections with titles, descriptions, and optional icons",
-    }),
+    ,
 });
 
 export const Schema = solutionSlideSchema;

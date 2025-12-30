@@ -6,21 +6,13 @@ import * as z from "zod";
 
 
 const ImageSchema = z.object({
-    __image_url__: z.string().url().default("https://via.placeholder.com/900x500").meta({
-      description: "URL to image",
-    }),
-    __image_prompt__: z.string().min(10).max(200).default("Wide landscape placeholder representing a slide image area").meta({
-      description: "Prompt used to generate the image. Max 30 words",
-    }),
+    __image_url__: z.string().url().default("https://via.placeholder.com/900x500"),
+    __image_prompt__: z.string().min(10).max(200).default("Wide landscape placeholder representing a slide image area"),
   })
   
   const IconSchema = z.object({
-    __icon_url__: z.string().default("https://via.placeholder.com/60").meta({
-      description: "URL to icon",
-    }),
-    __icon_query__: z.string().min(3).max(30).default("camera landscape placeholder").meta({
-      description: "Query used to search the icon. Max 3 words",
-    }),
+    __icon_url__: z.string().default("https://via.placeholder.com/60"),
+    __icon_query__: z.string().min(3).max(30).default("camera landscape placeholder"),
   })
   
   const layoutId = "header-title-card-slide"
@@ -33,38 +25,26 @@ const ImageSchema = z.object({
     }).default({ maxWords: 56 }),
     topBar: z.object({
       
-      pageNumber: z.string().min(1).max(3).default("3").meta({
-        description: "Page number text. Max 1 word",
-      }),
+      pageNumber: z.string().min(1).max(3).default("3"),
     }).default({
       
       pageNumber: "3",
     }),
-    title: z.string().min(24).max(56).default("Transforming Ideas into\nReality").meta({
-      description: "Main title split across up to two lines. Max 10 words",
-    }),
+    title: z.string().min(24).max(56).default("Transforming Ideas into\nReality"),
     backgroundImage: ImageSchema.default({
       __image_url__: "https://images.unsplash.com/photo-1650831432942-aa352df4e9b4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       __image_prompt__: "Background image covering the entire section behind the card",
-    }).meta({
-      description: "Full-bleed background image behind card area",
     }),
     card: z.object({
       circleIcon: IconSchema.default({
         __icon_url__: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 24 24' fill='%230A8016' aria-hidden='true'><path d='M10 6V7H7C5.895 7 5 7.895 5 9V18C5 19.105 5.895 20 7 20H17C18.105 20 19 19.105 19 18V9C19 7.895 18.105 7 17 7H14V6C14 4.895 13.105 4 12 4H12C10.895 4 10 4.895 10 6ZM12 6C12.552 6 13 6.448 13 7H11C11 6.448 11.448 6 12 6ZM7 9H17V11H7V9Z'/></svg>",
         __icon_query__: "badge document icon",
       }),
-      heading: z.string().min(22).max(70).default("Idea Generation and Validation").meta({
-        description: "Card heading text. Max 10 words",
-      }),
-      body: z.string().min(140).max(450).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.").meta({
-        description: "Card body paragraph. Max 80 words",
-      }),
+      heading: z.string().min(22).max(70).default("Idea Generation and Validation"),
+      body: z.string().min(140).max(450).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
       image: ImageSchema.default({
         __image_url__: "https://via.placeholder.com/1200x600",
         __image_prompt__: "Optional supporting image inside card area",
-      }).meta({
-        description: "Optional supporting image for the card. Max 30 words",
       }),
     }).default({
       circleIcon: {

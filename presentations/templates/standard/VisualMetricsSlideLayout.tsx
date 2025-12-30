@@ -4,21 +4,13 @@ import * as z from "zod";
 
 
 const ImageSchema = z.object({
-__image_url__: z.string().url().default("https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=1200&auto=format&fit=crop").meta({
-    description: "URL to image",
-}),
-__image_prompt__: z.string().min(10).max(150).default("Abstract light background for slide header area").meta({
-    description: "Prompt used to generate the image. Max 30 words",
-}),
+__image_url__: z.string().url().default("https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=1200&auto=format&fit=crop"),
+__image_prompt__: z.string().min(10).max(150).default("Abstract light background for slide header area"),
 })
 
 const IconSchema = z.object({
-__icon_url__: z.string().url().default("https://cdn.jsdelivr.net/gh/tabler/tabler-icons/icons/placeholder.svg").meta({
-    description: "URL to icon",
-}),
-__icon_query__: z.string().min(3).max(30).default("progress ring placeholder").meta({
-    description: "Query used to search the icon. Max 3 words",
-}),
+__icon_url__: z.string().url().default("https://cdn.jsdelivr.net/gh/tabler/tabler-icons/icons/placeholder.svg"),
+__icon_query__: z.string().min(3).max(30).default("progress ring placeholder"),
 })
 
 const layoutId = "visual-metrics"      
@@ -26,18 +18,10 @@ const layoutName = "Visual Metrics"
 const layoutDescription = "A slide with a header bar, numeric marker, title, description, and grid of cards with headings, circular metrics, and texts"
 
 const CardSchema = z.object({
-title: z.string().min(6).max(18).default("Research").meta({
-    description: "Card heading. Max 3 words",
-}),
-value: z.number().min(0).max(9999).default(67).meta({
-    description: "Numeric value to display",
-}),
-unit: z.string().min(0).max(2).default("K").meta({
-    description: "Unit for the value, e.g., %, K, M",
-}),
-description: z.string().min(1).max(50).default("Lorem ipsum dolor sit amet, consectetur").meta({
-    description: "Card supporting text. Max 50 characters",
-}),
+title: z.string().min(6).max(18).default("Research"),
+value: z.number().min(0).max(9999).default(67),
+unit: z.string().min(0).max(2).default("K"),
+description: z.string().min(1).max(50).default("Lorem ipsum dolor sit amet, consectetur"),
 }).default({
 title: "Research",
 value: 67,
@@ -48,19 +32,13 @@ description: "Lorem ipsum dolor sit amet, consectetur",
 const Schema = z.object({
 topBar: z.object({
    
-    marker: z.string().min(1).max(3).default("2").meta({
-    description: "Numeric marker on the top bar. Up to 3 digits",
-    }),
+    marker: z.string().min(1).max(3).default("2"),
 }).default({
     
     marker: "2",
 }),
-title: z.string().min(20).max(68).default("Our Vision And Strategy For Excellence").meta({
-    description: "Main slide title. Max 10 words",
-}),
-description: z.string().min(70).max(200).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation").meta({
-    description: "Lead paragraph. Max 35 words",
-}),
+title: z.string().min(20).max(68).default("Our Vision And Strategy For Excellence"),
+description: z.string().min(70).max(200).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"),
 cards: z.array(CardSchema).min(1).max(4).default([
     {
     title: "Research",
@@ -84,12 +62,8 @@ cards: z.array(CardSchema).min(1).max(4).default([
     
     },
     { title: "Development", value: 80, unit: "K", description: "Lorem ipsum dolor sit amet, consectetur" },
-]).meta({
-    description: "Grid of cards with heading, circular metric, and text",
-}),
-chartPalette: z.array(z.string().min(4).max(20)).min(2).max(6).default(["var(--primary-accent-color, #1B8C2D)", "var(--tertiary-accent-color, #E5E7EB)", "#f59e0b", "#3b82f6"]).meta({
-    description: "Palette for charts",
-}),
+]),
+chartPalette: z.array(z.string().min(4).max(20)).min(2).max(6).default(["var(--primary-accent-color, #1B8C2D)", "var(--tertiary-accent-color, #E5E7EB)", "#f59e0b", "#3b82f6"]),
 }).default({
 topBar: {  marker: "2" },
 title: "Our Vision And Strategy For Excellence",

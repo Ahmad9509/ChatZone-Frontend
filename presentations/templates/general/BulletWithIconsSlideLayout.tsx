@@ -8,25 +8,15 @@ export const layoutName = 'Bullet with Icons'
 export const layoutDescription = 'A bullets style slide with main content, supporting image, and bullet points with icons and descriptions.'
 
 const bulletWithIconsSlideSchema = z.object({
-    title: z.string().min(3).max(40).default('Problem').meta({
-        description: "Main title of the slide",
-    }),
-    description: z.string().max(150).default('Businesses face challenges with outdated technology and rising costs, limiting efficiency and growth in competitive markets.').meta({
-        description: "Main description text explaining the problem or topic",
-    }),
+    title: z.string().min(3).max(40).default('Problem'),
+    description: z.string().max(150).default('Businesses face challenges with outdated technology and rising costs, limiting efficiency and growth in competitive markets.'),
     image: ImageSchema.default({
         __image_url__: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
         __image_prompt__: 'Business people analyzing documents and charts in office'
-    }).meta({
-        description: "Supporting image for the slide",
     }),
     bulletPoints: z.array(z.object({
-        title: z.string().min(2).max(60).meta({
-            description: "Bullet point title",
-        }),
-        description: z.string().min(10).max(100).meta({
-            description: "Bullet point description",
-        }),
+        title: z.string().min(2).max(60),
+        description: z.string().min(10).max(100),
         icon: IconSchema,
     })).min(1).max(3).default([
         {
@@ -45,9 +35,7 @@ const bulletWithIconsSlideSchema = z.object({
                 __icon_query__: 'trending up costs chart'
             }
         }
-    ]).meta({
-        description: "List of bullet points with icons and descriptions",
-    })
+    ])
 })
 
 export const Schema = bulletWithIconsSlideSchema

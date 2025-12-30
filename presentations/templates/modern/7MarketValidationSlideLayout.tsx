@@ -13,15 +13,9 @@ export const layoutDescription =
 
 // Make the schema generic: allow any label/value pairs for comparison
 const marketValidationSchema = z.object({
-  companyName: z.string().min(2).max(50).default("chatzone").meta({
-    description: "Company name displayed in header",
-  }),
-  date: z.string().min(5).max(50).default("June 13, 2038").meta({
-    description: "Today Date displayed in header",
-  }),
-  title: z.string().min(3).max(20).default("Market Validation").meta({
-    description: "Title of the slide",
-  }),
+  companyName: z.string().min(2).max(50).default("chatzone"),
+  date: z.string().min(5).max(50).default("June 13, 2038"),
+  title: z.string().min(3).max(20).default("Market Validation"),
   description: z
     .string()
     .min(50)
@@ -29,25 +23,14 @@ const marketValidationSchema = z.object({
     .default(
       "It’s a market testing stage to ensure that the products produced by the company can be accepted and effectively used by the broad market. For start-up companies, we can use data already achieved by similar products from other companies.",
     )
-    .meta({
-      description:
-        "Main description text for the slide explaining market validation",
-    }),
+    ,
   // Generic comparisonData: label for row, label for metric, and value
   comparisonData: z
     .array(
       z.object({
-        label: z.string().min(2).max(50).meta({
-          description:
-            "Name of comparison entity (e.g., company, product, etc.)",
-        }),
-        metricLabel: z.string().min(2).max(50).meta({
-          description:
-            "Label for the metric being compared (e.g., Users, Revenue, etc.)",
-        }),
-        value: z.number().min(0).meta({
-          description: "Numeric value for the metric",
-        }),
+        label: z.string().min(2).max(50),
+        metricLabel: z.string().min(2).max(50),
+        value: z.number().min(0),
       }),
     )
     .min(2)
@@ -57,13 +40,8 @@ const marketValidationSchema = z.object({
       { label: "Salford & Co.", metricLabel: "Revenue ($K)", value: 1850 },
       { label: "Liceria & Co.", metricLabel: "Revenue ($K)", value: 1010 },
     ])
-    .meta({
-      description:
-        "Comparison data for market validation, allowing flexible labels and values",
-    }),
-  image: ImageSchema.optional().meta({
-    description: "Optional decorative image",
-  }),
+    ,
+  image: ImageSchema.optional(),
 });
 
 export const Schema = marketValidationSchema;

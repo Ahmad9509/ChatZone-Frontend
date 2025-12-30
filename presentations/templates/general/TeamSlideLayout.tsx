@@ -7,25 +7,15 @@ export const layoutName = 'Team Slide'
 export const layoutDescription = 'A slide layout showcasing team members with photos, names, positions, and descriptions alongside company information.'
 
 const teamMemberSchema = z.object({
-    name: z.string().min(2).max(50).meta({
-        description: "Team member's full name"
-    }),
-    position: z.string().min(2).max(50).meta({
-        description: "Job title or position"
-    }),
-    description: z.string().max(150).meta({
-        description: "Brief description of the team member (around 100 characters)"
-    }),
+    name: z.string().min(2).max(50),
+    position: z.string().min(2).max(50),
+    description: z.string().max(150),
     image: ImageSchema
 });
 
 const teamSlideSchema = z.object({
-    title: z.string().min(3).max(40).default('Our Team Members').meta({
-        description: "Main title of the slide",
-    }),
-    companyDescription: z.string().min(10).max(150).default('Ginyard International Co. is a leading provider of innovative digital solutions tailored for businesses. Our mission is to empower organizations to achieve their goals through cutting-edge technology and strategic partnerships.').meta({
-        description: "Company description or team introduction text",
-    }),
+    title: z.string().min(3).max(40).default('Our Team Members'),
+    companyDescription: z.string().min(10).max(150).default('Ginyard International Co. is a leading provider of innovative digital solutions tailored for businesses. Our mission is to empower organizations to achieve their goals through cutting-edge technology and strategic partnerships.'),
     teamMembers: z.array(teamMemberSchema).min(2).max(4).default([
         {
             name: 'Juliana Silva',
@@ -63,9 +53,7 @@ const teamSlideSchema = z.object({
                 __image_prompt__: 'Professional businesswoman CMO headshot'
             }
         }
-    ]).meta({
-        description: "List of team members with their information",
-    })
+    ])
 })
 
 export const Schema = teamSlideSchema

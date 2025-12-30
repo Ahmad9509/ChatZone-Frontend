@@ -7,22 +7,14 @@ export const layoutName = 'Numbered Bullets'
 export const layoutDescription = 'A slide layout with large title, supporting image, and numbered bullet points with descriptions.'
 
 const numberedBulletsSlideSchema = z.object({
-    title: z.string().min(3).max(40).default('Market Validation').meta({
-        description: "Main title of the slide",
-    }),
+    title: z.string().min(3).max(40).default('Market Validation'),
     image: ImageSchema.default({
         __image_url__: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
         __image_prompt__: 'Business people analyzing charts and data on wall'
-    }).meta({
-        description: "Supporting image for the slide",
     }),
     bulletPoints: z.array(z.object({
-        title: z.string().min(2).max(80).meta({
-            description: "Bullet point title",
-        }),
-        description: z.string().min(10).max(150).meta({
-            description: "Bullet point description",
-        }),
+        title: z.string().min(2).max(80),
+        description: z.string().min(10).max(150),
     })).min(1).max(3).default([
         {
             title: 'Customer Insights',
@@ -40,9 +32,7 @@ const numberedBulletsSlideSchema = z.object({
             title: 'Pilot Program Success',
             description: 'The survey revealed that 78% of businesses plan to invest in digital solutions, and 85% prefer a tailored approach.'
         }
-    ]).meta({
-        description: "List of numbered bullet points with descriptions",
-    })
+    ])
 })
 
 export const Schema = numberedBulletsSlideSchema

@@ -5,21 +5,13 @@ import * as z from "zod";
 
 
 const ImageSchema = z.object({
-    __image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg").meta({
-      description: "URL to image",
-    }),
-    __image_prompt__: z.string().min(10).max(180).default("Decorative abstract office scene photo placed at lower right on the band").meta({
-      description: "Prompt used to generate the image. Max 30 words",
-    }),
+    __image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg"),
+    __image_prompt__: z.string().min(10).max(180).default("Decorative abstract office scene photo placed at lower right on the band"),
   })
   
   const IconSchema = z.object({
-    __icon_url__: z.string().default("https://chatzone-public.s3.ap-southeast-1.amazonaws.com/static/icons/bold/fediverse-logo-bold.svg").meta({
-      description: "URL to icon",
-    }),
-    __icon_query__: z.string().min(2).max(20).default("info icon").meta({
-      description: "Query used to search the icon. Max 3 words",
-    }),
+    __icon_url__: z.string().default("https://chatzone-public.s3.ap-southeast-1.amazonaws.com/static/icons/bold/fediverse-logo-bold.svg"),
+    __icon_query__: z.string().min(2).max(20).default("info icon"),
   })
   
   const layoutId = "header-bullets-title-description-image-slide"
@@ -27,37 +19,21 @@ const ImageSchema = z.object({
   const layoutDescription = "A slide with a small header label and number, a left card of ...cards with round symbols and titles with descriptions, a large heading with supporting text, and a decorative image on a mid-page band"
   
   const Schema = z.object({
-    metaMaxWords: z.number().default(240).meta({
-      description: "Maximum number of words any single text field can handle in this layout",
-    }),
+    metaMaxWords: z.number().default(240),
    
      
-    headerNumber: z.string().min(1).max(3).default("6").meta({
-      description: "Small header number text. Max 3 characters",
-    }),
-    rightTitle: z.string().min(24).max(72).default("Disrupting the\nIndustry").meta({
-      description: "Large heading on the right. Max 8 words",
-    }),
-    rightDescription: z.string().min(120).max(240).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna").meta({
-      description: "Supporting paragraph under the large heading. Max 40 words",
-    }),
+    headerNumber: z.string().min(1).max(3).default("6"),
+    rightTitle: z.string().min(24).max(72).default("Disrupting the\nIndustry"),
+    rightDescription: z.string().min(120).max(240).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna"),
     // decorative image removed
     cards: z.array(z.object({
-      symbolText: z.string().min(1).max(1).default("i").meta({
-        description: "Single-character symbol inside the round badge",
-      }),
+      symbolText: z.string().min(1).max(1).default("i"),
       symbolIcon: IconSchema.default({
         __icon_url__: "https://chatzone-public.s3.ap-southeast-1.amazonaws.com/static/icons/bold/fediverse-logo-bold.png",
         __icon_query__: "info icon",
-      }).meta({
-        description: "Optional icon representation for the round symbol",
       }),
-      title: z.string().min(16).max(38).default("Visionary Leadership").meta({
-        description: "Title for the card item. Max 4 words",
-      }),
-      description: z.string().min(50).max(100).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor").meta({
-        description: "Description for the card item. Max 15 words.",
-      }),
+      title: z.string().min(16).max(38).default("Visionary Leadership"),
+      description: z.string().min(50).max(100).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"),
     })).min(1).max(4).default([
       {
         symbolText: "i",
@@ -83,9 +59,7 @@ const ImageSchema = z.object({
         title: "Customer-Centric Disruption",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       }
-    ]).meta({
-      description: "Array of ...cards with a round symbol, title and description. Max 6 items",
-    }),
+    ]),
     // chart and diagram removed
   })
   

@@ -7,35 +7,19 @@ export const layoutDescription =
   "A simple, plain thank you slide for closing presentations. This is always the last slide in a presentation, providing a clean and professional closing message with company contact information.";
 
 const thankYouSlideSchema = z.object({
-  title: z.string().min(3).max(30).default("Thank You!").meta({
-    description: "Main thank you message",
-  }),
-  subtitle: z.string().min(0).max(100).default("").meta({
-    description: "Optional subtitle or closing remark",
-  }),
-  companyName: z.string().min(2).max(50).default("chatzone").meta({
-    description: "Company name displayed in header",
-  }),
-  date: z.string().min(5).max(50).default("June 13, 2038").meta({
-    description: "Today Date displayed in header",
-  }),
+  title: z.string().min(3).max(30).default("Thank You!"),
+  subtitle: z.string().min(0).max(100).default(""),
+  companyName: z.string().min(2).max(50).default("chatzone"),
+  date: z.string().min(5).max(50).default("June 13, 2038"),
   address: z
     .string()
     .min(5)
     .max(100)
     .default("123 Anywhere St., Any City, ST 12345")
-    .meta({
-      description: "Company address for contact section",
-    }),
-  phone: z.string().min(5).max(30).default("+123-456-7890").meta({
-    description: "Company phone number for contact section",
-  }),
-  website: z.string().min(5).max(100).default("www.reallygreatsite.com").meta({
-    description: "Company website for contact section",
-  }),
-  email: z.string().default("info@reallygreatsite.com").meta({
-    description: "Company email address for contact section",
-  }),
+    ,
+  phone: z.string().min(5).max(30).default("+123-456-7890"),
+  website: z.string().min(5).max(100).default("www.reallygreatsite.com"),
+  email: z.string().default("info@reallygreatsite.com"),
 });
 
 export const Schema = thankYouSlideSchema;

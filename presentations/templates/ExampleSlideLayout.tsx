@@ -2,19 +2,14 @@ import * as z from "zod";
 import { ImageSchema, IconSchema } from "@/presentations/templates/defaultSchemes";
 
 export const Schema = z.object({
-  title: z.string().min(5).max(50).default("Quarterly Business Review").meta({
-    description: "Main slide title",
-  }),
+  title: z.string().min(5).max(50).default("Quarterly Business Review"),
 
   subtitle: z
     .string()
     .min(3)
     .max(100)
     .optional()
-    .default("Q1 2024 Performance Summary")
-    .meta({
-      description: "Optional subtitle",
-    }),
+    .default("Q1 2024 Performance Summary"),
 
   metrics: z
     .array(
@@ -27,23 +22,16 @@ export const Schema = z.object({
     .default([
       { label: "Revenue", value: "$2.4M", trend: "up" },
       { label: "Growth", value: "15%", trend: "up" },
-    ])
-    .meta({
-      description: "Key performance metrics",
-    }),
+    ]),
 
   chartImage: ImageSchema.default({
     __image_url__: "https://example.com/quarterly-chart.png",
     __image_prompt__: "Quarterly performance chart showing upward trend",
-  }).meta({
-    description: "Main performance chart",
   }),
 
   trendIcon: IconSchema.default({
     __icon_url__: "/static/icons/placeholder.svg",
     __icon_query__: "upward trend arrow icon",
-  }).meta({
-    description: "Trend indicator icon",
   }),
 });
 

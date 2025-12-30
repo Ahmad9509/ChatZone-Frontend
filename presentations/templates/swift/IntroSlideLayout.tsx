@@ -24,7 +24,7 @@ const Schema = z
       .min(12)
       .max(68)
       .default("Pitch Deck")
-      .meta({ description: "Main slide title" }),
+      ,
 
     subtitlePrefix: z.string().min(3).max(40).default("Presentation"),
     subtitleAccent: z.string().min(3).max(40).default("Template"),

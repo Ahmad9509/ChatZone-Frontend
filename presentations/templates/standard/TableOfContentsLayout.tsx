@@ -7,9 +7,7 @@ const layoutDescription = "Header with brand marker, title, optional description
 
 const ToCItemSchema = z
   .object({
-    title: z.string().min(4).max(50).default("Introduction").meta({
-      description: "Section title. Max 50 characters",
-    }),
+    title: z.string().min(4).max(50).default("Introduction"),
   })
   .default({
     title: "Introduction",
@@ -20,9 +18,7 @@ const Schema = z
     topBar: z
       .object({
         
-        marker: z.string().min(1).max(3).default("2").meta({
-          description: "Numeric marker on the top bar. Up to 3 digits",
-        }),
+        marker: z.string().min(1).max(3).default("2"),
       })
       .default({  marker: "2" }),
 
@@ -31,7 +27,7 @@ const Schema = z
       .min(12)
       .max(68)
       .default("Table Of Contents")
-      .meta({ description: "Main slide title. Max 10 words" }),
+      ,
 
     description: z
       .string()
@@ -40,7 +36,7 @@ const Schema = z
       .default(
         "Use this as a quick guide to navigate the presentation sections."
       )
-      .meta({ description: "Lead paragraph. Optional. Max 35 words" }),
+      ,
 
     items: z
       .array(ToCItemSchema)
@@ -58,7 +54,7 @@ const Schema = z
         { title: "Financials" },
         { title: "Ask" },
       ])
-      .meta({ description: "List of contents (3-10)" }),
+      ,
   })
   .default({
       topBar: {  marker: "2" },

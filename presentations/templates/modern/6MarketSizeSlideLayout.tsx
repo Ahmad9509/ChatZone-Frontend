@@ -8,15 +8,9 @@ export const layoutDescription =
   "A professional slide layout designed to present market size statistics, including TAM, SAM, and SOM, with a world map and key metrics.";
 
 const marketSizeSlideSchema = z.object({
-  title: z.string().min(3).max(15).default("Market Size").meta({
-    description: "Main slide title",
-  }),
-  companyName: z.string().min(2).max(50).default("chatzone").meta({
-    description: "Company name displayed in header",
-  }),
-  date: z.string().min(5).max(50).default("June 13, 2038").meta({
-    description: "Today Date displayed in header",
-  }),
+  title: z.string().min(3).max(15).default("Market Size"),
+  companyName: z.string().min(2).max(50).default("chatzone"),
+  date: z.string().min(5).max(50).default("June 13, 2038"),
   mapImage: ImageSchema.default({
     __image_url__:
       "https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg", // You can quickly find a world map image via a Google search or use a free resource like Wikimedia Commons
@@ -52,18 +46,13 @@ const marketSizeSlideSchema = z.object({
           "The SOM is a smaller fraction of the SAM that is the target of a serviceable and realistically achievable market in the short to medium term.",
       },
     ])
-    .meta({
-      description:
-        "Market statistics including TAM, SAM, and SOM with labels, values, and descriptions.",
-    }),
+    ,
   description: z
     .string()
     .default(
       "Market size is the total amount of all sales and customers that can be seen directly by stakeholders. This technique is usually calculated at the end of the year, the market size can be used by companies to determine the potential of their market and business in the future. This is very useful, especially for new companies that will offer services to those who are interested in our services.",
     )
-    .meta({
-      description: "Main description text for the slide",
-    }),
+    ,
 });
 
 export const Schema = marketSizeSlideSchema;

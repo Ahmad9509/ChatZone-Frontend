@@ -3,21 +3,13 @@ import * as z from "zod";
 
 
 const ImageSchema = z.object({
-    __image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg").meta({
-      description: "URL to image",
-    }),
-    __image_prompt__: z.string().min(10).max(160).default("Portrait of a professional team member with subtle background, soft light, business attire").meta({
-      description: "Prompt used to generate the image. Max 30 words",
-    }),
+    __image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg"),
+    __image_prompt__: z.string().min(10).max(160).default("Portrait of a professional team member with subtle background, soft light, business attire"),
   })
   
   const IconSchema = z.object({
-    __icon_url__: z.string().url().default("https://static.thenounproject.com/png/1137401-200.png").meta({
-      description: "URL to icon",
-    }),
-    __icon_query__: z.string().min(3).max(30).default("photo image placeholder").meta({
-      description: "Query used to search the icon. Max 5 words",
-    }),
+    __icon_url__: z.string().url().default("https://static.thenounproject.com/png/1137401-200.png"),
+    __icon_query__: z.string().min(3).max(30).default("photo image placeholder"),
   })
   
   const layoutId = "header-smallbar-title-team-cards-slide"
@@ -27,14 +19,10 @@ const ImageSchema = z.object({
   const Schema = z.object({
     utilityBar: z.object({
       
-      pageNumber: z.string().min(1).max(2).default("8").meta({
-        description: "Page number text. 1-2 digits",
-      }),
+      pageNumber: z.string().min(1).max(2).default("8"),
       decorativeLine: IconSchema.default({
         __icon_url__: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='2'%3E%3Crect width='220' height='2' fill='%231FA34A'/%3E%3C/svg%3E",
         __icon_query__: "green line separator",
-      }).meta({
-        description: "Decorative line representation.",
       }),
     }).default({
       
@@ -44,16 +32,10 @@ const ImageSchema = z.object({
         __icon_query__: "green line separator",
       },
     }),
-    title: z.string().min(10).max(50).default("Our Professional Team").meta({
-      description: "Centered main title. Max 5 words",
-    }),
+    title: z.string().min(10).max(50).default("Our Professional Team"),
     cards: z.array(z.object({
-      name: z.string().min(3).max(30).default("Sam Rawlings").meta({
-        description: "Member name. Up to 3 words.",
-      }),
-      role: z.string().min(20).max(50).default("Marketing specialist with brand and growth experience").meta({
-        description: "Short description under name. Up to 10 words",
-      }),
+      name: z.string().min(3).max(30).default("Sam Rawlings"),
+      role: z.string().min(20).max(50).default("Marketing specialist with brand and growth experience"),
       photo: ImageSchema,
     })).min(1).max(4).default([
       {
@@ -81,9 +63,7 @@ const ImageSchema = z.object({
         },
       },
 
-    ]).meta({
-      description: "Grid of member cards with name, role, and image. Up to 4 items",
-    }),
+    ]),
   })
   
   type SlideData = z.infer<typeof Schema>

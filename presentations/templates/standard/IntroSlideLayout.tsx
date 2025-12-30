@@ -2,21 +2,13 @@ import React from 'react'
 import * as z from "zod";
 
 const ImageSchema = z.object({
-__image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg").meta({
-    description: "URL to image",
-}),
-__image_prompt__: z.string().min(10).max(150).default("High-quality illustrative image for the left panel of a pitch deck cover").meta({
-    description: "Prompt used to generate the image. Max 30 words",
-}),
+__image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg"),
+__image_prompt__: z.string().min(10).max(150).default("High-quality illustrative image for the left panel of a pitch deck cover"),
 })
 
 const IconSchema = z.object({
-__icon_url__: z.string().default("https://static.thenounproject.com/png/5563447-200.png").meta({
-    description: "URL to icon",
-}),
-__icon_query__: z.string().min(3).max(40).default("image placeholder icon").meta({
-    description: "Query used to search the icon. Max 3 words",
-}),
+__icon_url__: z.string().default("https://static.thenounproject.com/png/5563447-200.png"),
+__icon_query__: z.string().min(3).max(40).default("image placeholder icon"),
 })
 
 const layoutId = "header-counter-two-column-image-text-slide"
@@ -29,12 +21,8 @@ header: z.object({
     separatorIcon: IconSchema.default({
     __icon_url__: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='230' height='2' viewBox='0 0 230 2'%3E%3Crect width='230' height='2' fill='%2322863A'/%3E%3C/svg%3E",
     __icon_query__: "green line",
-    }).meta({
-    description: "Graphic separator element",
     }),
-    counter: z.string().min(1).max(3).default("1").meta({
-    description: "Small counter text. Max 1 word",
-    }),
+    counter: z.string().min(1).max(3).default("1"),
 }).default({
     
     separatorIcon: {
@@ -45,9 +33,7 @@ header: z.object({
 }),
 
 media: z.object({
-    type: z.enum(["image"]).default("image").meta({
-    description: "Choose media type for left panel",
-    }),
+    type: z.enum(["image"]).default("image"),
     image: ImageSchema.default({
     __image_url__: "https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     __image_prompt__: "Abstract gradient image suitable for a presentation left panel",
@@ -60,30 +46,22 @@ media: z.object({
     },
 }),
 
-title: z.string().min(12).max(30).default("Introduction Our Pitchdeck").meta({
-    description: "Main title, supports a line break. Max 6 words",
-}),
-titleBreakAfter: z.number().min(1).max(25).default(12).meta({
-    description: "Character index to insert a line break in title",
-}),
+title: z.string().min(12).max(30).default("Introduction Our Pitchdeck"),
+titleBreakAfter: z.number().min(1).max(25).default(12),
 
-paragraph: z.string().min(50).max(200).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris").meta({
-    description: "Paragraph text block. Max 20 words",
-}),
+paragraph: z.string().min(50).max(200).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"),
 
 introCard: z.object({
-    enabled: z.boolean().default(false).meta({ description: "Show intro card with name and date" }),
-    initials: z.string().min(2).max(3).default("PDT").meta({ description: "Initials inside the circle" }),
-    name: z.string().min(3).max(40).default("Pitch Deck Team").meta({ description: "Display name" }),
-    date: z.string().min(6).max(40).default("December 22, 2025").meta({ description: "Display date string" }),
+    enabled: z.boolean().default(false),
+    initials: z.string().min(2).max(3).default("PDT"),
+    name: z.string().min(3).max(40).default("Pitch Deck Team"),
+    date: z.string().min(6).max(40).default("December 22, 2025"),
 }).default({
     enabled: true,
     initials: "PDT",
     name: "Pitch Deck Team",
     date: "December 22, 2025",
 }),
-}).meta({
-maxWords: 460,
 })
 
 type SlideData = z.infer<typeof Schema>

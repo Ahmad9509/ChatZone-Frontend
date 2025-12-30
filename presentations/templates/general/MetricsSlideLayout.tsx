@@ -6,19 +6,11 @@ export const layoutName = 'Metrics'
 export const layoutDescription = 'A slide layout for showcasing key business metrics with large numbers and descriptive text boxes. This should only be used with metrics and numbers.'
 
 const metricsSlideSchema = z.object({
-    title: z.string().min(3).max(100).default('Company Traction').meta({
-        description: "Main title of the slide",
-    }),
+    title: z.string().min(3).max(100).default('Company Traction'),
     metrics: z.array(z.object({
-        label: z.string().min(2).max(50).meta({
-            description: "Metric label/title"
-        }),
-        value: z.string().min(1).max(10).meta({
-            description: "Metric value (e.g., 150+, 95%, $2M). No long values. Keep simple number."
-        }),
-        description: z.string().min(10).max(150).meta({
-            description: "Detailed description of the metric. Explanation of the metric."
-        }),
+        label: z.string().min(2).max(50),
+        value: z.string().min(1).max(10),
+        description: z.string().min(10).max(150),
     })).min(2).max(3).default([
         {
             value: '150+',
@@ -35,9 +27,7 @@ const metricsSlideSchema = z.object({
             label: 'client satisfaction.',
             description: 'With a strong focus on customer success, Larana Inc. has a 95% satisfaction rate.'
         }
-    ]).meta({
-        description: "List of key business metrics to display",
-    })
+    ])
 })
 
 export const Schema = metricsSlideSchema

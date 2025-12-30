@@ -8,9 +8,7 @@ export const layoutDescription =
   "A slide layout providing an overview of the company, its background, and key information.";
 
 const aboutCompanySlideSchema = z.object({
-  title: z.string().min(3).max(30).default("About Our Company").meta({
-    description: "Main title of the slide",
-  }),
+  title: z.string().min(3).max(30).default("About Our Company"),
   content: z
     .string()
     .min(25)
@@ -18,19 +16,10 @@ const aboutCompanySlideSchema = z.object({
     .default(
       "In the presentation session, the background/introduction can be filled with information that is arranged systematically and effectively with respect to an interesting topic to be used as material for discussion at the opening of the presentation session. The introduction can provide a general overview for those who are listening to your presentation so that the key words on the topic of discussion are emphasized during this background/introductory presentation session.",
     )
-    .meta({
-      description: "Main content text describing the company or topic",
-    }),
-  companyName: z.string().min(2).max(50).default("chatzone").meta({
-    description: "Company name displayed in header",
-  }),
-  date: z.string().min(5).max(30).default("June 13, 2038").meta({
-    description: "Today Date displayed in header",
-  }),
-  image: ImageSchema.optional().meta({
-    description:
-      "Optional supporting image for the slide (building, office, etc.)",
-  }),
+    ,
+  companyName: z.string().min(2).max(50).default("chatzone"),
+  date: z.string().min(5).max(30).default("June 13, 2038"),
+  image: ImageSchema.optional(),
 });
 
 export const Schema = aboutCompanySlideSchema;

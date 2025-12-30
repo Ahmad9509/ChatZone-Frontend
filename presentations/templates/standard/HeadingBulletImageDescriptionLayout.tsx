@@ -3,21 +3,13 @@ import React from 'react'
 import * as z from "zod";
 
 const ImageSchema = z.object({
-    __image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg").meta({
-      description: "URL to image",
-    }),
-    __image_prompt__: z.string().min(10).max(150).default("Small decorative photo partially behind the card showing a business theme").meta({
-      description: "Prompt used to generate the image. Max 30 words",
-    }),
+    __image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg"),
+    __image_prompt__: z.string().min(10).max(150).default("Small decorative photo partially behind the card showing a business theme"),
   })
   
   const IconSchema = z.object({
-    __icon_url__: z.string().default("").meta({
-      description: "URL to icon",
-    }),
-    __icon_query__: z.string().min(3).max(30).default("").meta({
-      description: "Query used to search the icon. Max 5 words",
-    }),
+    __icon_url__: z.string().default(""),
+    __icon_query__: z.string().min(3).max(30).default(""),
   })
   
   const layoutId = "split-left-strip-header-title-subtitle-cards-slide"
@@ -25,40 +17,24 @@ const ImageSchema = z.object({
   const layoutDescription = "A slide with a left strip, top label with rule, right header, right description, floating small image, and a centered card with ...cards."
   
   const Schema = z.object({
-    metaMaxWords: z.number().default(200).meta({
-      description: "Maximum number of words the text areas can handle collectively.",
-    }),
-    pageNumber: z.string().min(1).max(3).default("7").meta({
-      description: "Top-right page number text. Max 3 chars",
-    }),
+    metaMaxWords: z.number().default(200),
+    pageNumber: z.string().min(1).max(3).default("7"),
    
-    heading: z.string().min(16).max(38).default("A Blueprint for\nSuccess").meta({
-      description: "Main heading across up to 2 lines. Max 7 words",
-    }),
-    subheading: z.string().min(60).max(200).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna").meta({
-      description: "Supporting paragraph under the heading. Max 35 words",
-    }),
+    heading: z.string().min(16).max(38).default("A Blueprint for\nSuccess"),
+    subheading: z.string().min(60).max(200).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna"),
     smallImage: ImageSchema.default({
       __image_url__: "https://images.pexels.com/photos/327533/pexels-photo-327533.jpeg",
       __image_prompt__: "A small landscape image suitable for a business slide"
-    }).meta({
-      description: "Small image partially behind the main card",
     }),
     cards: z.array(z.object({
-      title: z.string().min(8).max(16).default("Strategy 01").meta({
-        description: "Card ribbon title. Max 3 words",
-      }),
-      body: z.string().min(60).max(160).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor").meta({
-        description: "Card body text. Max 28 words",
-      }),
+      title: z.string().min(8).max(16).default("Strategy 01"),
+      body: z.string().min(60).max(160).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"),
     })).min(1).max(4).default([
       { title: "Strategy 01", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" },
       { title: "Strategy 02", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" },
       { title: "Strategy 03", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" },
       { title: "Strategy 04", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" },
-    ]).meta({
-      description: "Array of strategy cards",
-    }),
+    ]),
     
   })
   

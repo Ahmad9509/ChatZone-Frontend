@@ -3,21 +3,13 @@ import React from 'react'
 import * as z from "zod";
 
 const ImageSchema = z.object({
-    __image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg").meta({
-      description: "URL to image",
-    }),
-    __image_prompt__: z.string().min(10).max(90).default("Professional business meeting scene for roadmap presentation image").meta({
-      description: "Prompt used to generate the image. Max 18 words",
-    }),
+    __image_url__: z.string().url().default("https://images.pexels.com/photos/31527637/pexels-photo-31527637.jpeg"),
+    __image_prompt__: z.string().min(10).max(90).default("Professional business meeting scene for roadmap presentation image"),
   })
   
   const IconSchema = z.object({
-    __icon_url__: z.string().default("").meta({
-      description: "URL to icon",
-    }),
-    __icon_query__: z.string().min(3).max(30).default("").meta({
-      description: "Query used to search the icon. Max 6 words",
-    }),
+    __icon_url__: z.string().default(""),
+    __icon_query__: z.string().min(3).max(30).default(""),
   })
   
   const layoutId = "header-bullets-image-split-slide"
@@ -25,16 +17,12 @@ const ImageSchema = z.object({
   const layoutDescription = "A slide with a top bar, left column with numbered bullets, middle image panel, and right stacked heading with paragraph"
   
   const Schema = z.object({
-    metaMaxWords: z.number().default(18).meta({
-      description: "Maximum number of words allowed in any prompt/description metadata fields.",
-    }),
+    metaMaxWords: z.number().default(18),
     topBar: z.object({
      
       lineIcon: IconSchema.default({
         __icon_url__: "",
         __icon_query__: "thin green line",
-      }).meta({
-        description: "Decorative line representation with query only",
       }),
     }).default({
      
@@ -45,15 +33,9 @@ const ImageSchema = z.object({
     }),
     leftBullets: z.array(
       z.object({
-        numberText: z.string().min(2).max(2).default("01").meta({
-          description: "Two-digit bullet number. Max 2 chars",
-        }),
-        title: z.string().min(10).max(36).default("Strategic Execution").meta({
-          description: "Bullet title text. Designed for 24px. Max ~36 chars",
-        }),
-        body: z.string().min(60).max(100).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.").meta({
-          description: "Bullet body text. Max ~100 chars",
-        }),
+        numberText: z.string().min(2).max(2).default("01"),
+        title: z.string().min(10).max(36).default("Strategic Execution"),
+        body: z.string().min(60).max(100).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."),
       })
     ).min(1).max(4).default([
       {
@@ -76,22 +58,14 @@ const ImageSchema = z.object({
         title: "Innovation Pipeline",
         body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
       }
-    ]).meta({
-      description: "List of numbered bullets. Max 5 items",
-    }),
+    ]),
     middleImage: ImageSchema.default({
       __image_url__: "https://images.unsplash.com/photo-1515623959088-7617915baa1e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       __image_prompt__: "Professional business meeting scene for roadmap presentation image",
-    }).meta({
-      description: "Image displayed in the middle column",
     }),
     rightHeader: z.object({
-      heading: z.string().min(6).max(30).default("Our Journey").meta({
-        description: "Right column heading. Max ~30 chars",
-      }),
-      paragraph: z.string().min(80).max(200).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.").meta({
-        description: "Right paragraph text. Max 200 chars",
-      }),
+      heading: z.string().min(6).max(30).default("Our Journey"),
+      paragraph: z.string().min(80).max(200).default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."),
     }).default({
       heading: "Our Journey",
       paragraph: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",

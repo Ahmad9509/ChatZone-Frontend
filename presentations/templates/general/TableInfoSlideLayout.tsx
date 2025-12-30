@@ -6,16 +6,10 @@ export const layoutName = 'Table with Info'
 export const layoutDescription = 'A slide layout with a title at the top, structured table in the middle, and descriptive text at the bottom.'
 
 const tableInfoSlideSchema = z.object({
-    title: z.string().min(3).max(40).default('Market Comparison').meta({
-        description: "Main title of the slide",
-    }),
+    title: z.string().min(3).max(40).default('Market Comparison'),
     tableData: z.object({
-        headers: z.array(z.string().min(1).max(30)).min(2).max(5).meta({
-            description: "Table column headers"
-        }),
-        rows: z.array(z.array(z.string().min(1).max(50))).min(2).max(6).meta({
-            description: "Table rows data - each row should match the number of headers"
-        })
+        headers: z.array(z.string().min(1).max(30)).min(2).max(5),
+        rows: z.array(z.array(z.string().min(1).max(50))).min(2).max(6)
     }).default({
         headers: ['Company', 'Revenue', 'Growth', 'Market Share'],
         rows: [
@@ -24,12 +18,8 @@ const tableInfoSlideSchema = z.object({
             ['Company C', '$3.2M', '20%', '32%'],
             ['Our Company', '$1.2M', '35%', '12%']
         ]
-    }).meta({
-        description: "Table structure with headers and rows"
     }),
-    description: z.string().min(10).max(200).default('This comparison shows our competitive position in the market. While we currently have a smaller market share, our growth rate significantly exceeds competitors, indicating strong potential for future expansion.').meta({
-        description: "Descriptive text that appears below the table",
-    })
+    description: z.string().min(10).max(200).default('This comparison shows our competitive position in the market. While we currently have a smaller market share, our growth rate significantly exceeds competitors, indicating strong potential for future expansion.')
 })
 
 export const Schema = tableInfoSlideSchema

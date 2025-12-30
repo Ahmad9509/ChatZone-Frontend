@@ -8,15 +8,9 @@ export const layoutDescription =
   "A slide layout designed to showcase a company's products or services, highlighting their features and benefits in a structured format.";
 
 const productOverviewSlideSchema = z.object({
-  companyName: z.string().min(2).max(50).default("chatzone").meta({
-    description: "Company name displayed in header",
-  }),
-  date: z.string().min(5).max(50).default("June 13, 2038").meta({
-    description: "Today Date displayed in header",
-  }),
-  title: z.string().min(3).max(40).default("Product Overview").meta({
-    description: "Main title of the slide",
-  }),
+  companyName: z.string().min(2).max(50).default("chatzone"),
+  date: z.string().min(5).max(50).default("June 13, 2038"),
+  title: z.string().min(3).max(40).default("Product Overview"),
   mainDescription: z
     .string()
     .min(50)
@@ -24,24 +18,14 @@ const productOverviewSlideSchema = z.object({
     .default(
       "Provide an explanation of the general profile of the services we have. Arrange information about our products services in a systematic and fact-based manner. Also express our pride in the service that we have done well.",
     )
-    .meta({
-      description: "Main content text describing the product overview",
-    }),
+    ,
   products: z
     .array(
       z.object({
-        title: z.string().min(3).max(50).meta({
-          description: "Product title",
-        }),
-        description: z.string().min(30).max(140).meta({
-          description: "Product description",
-        }),
-        image: ImageSchema.meta({
-          description: "Product image",
-        }),
-        isBlueBackground: z.boolean().default(false).meta({
-          description: "Whether the product box has a blue background",
-        }),
+        title: z.string().min(3).max(50),
+        description: z.string().min(30).max(140),
+        image: ImageSchema,
+        isBlueBackground: z.boolean().default(false),
       }),
     )
     .min(2)
@@ -71,9 +55,7 @@ const productOverviewSlideSchema = z.object({
         isBlueBackground: true,
       },
     ])
-    .meta({
-      description: "List of products or services to showcase",
-    }),
+    ,
 });
 
 export const Schema = productOverviewSlideSchema;

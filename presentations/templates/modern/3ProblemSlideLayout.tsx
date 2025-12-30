@@ -8,9 +8,7 @@ export const layoutDescription =
   "A slide layout designed to present a clear problem statement, including categories of problems, company information, and an optional image.";
 
 const problemStatementSlideSchema = z.object({
-  title: z.string().min(3).max(20).default("Problem").meta({
-    description: "Main title of the problem statement slide",
-  }),
+  title: z.string().min(3).max(20).default("Problem"),
   description: z
     .string()
     .min(50)
@@ -18,21 +16,13 @@ const problemStatementSlideSchema = z.object({
     .default(
       "A problem needs to be discussed further and in detail because this problem is the main foundation in the initial development of a product, service, and decision making. Without a well-defined problem, it will have an impact on a job that is unfocused, unmanaged, and less relevant.",
     )
-    .meta({
-      description: "Main content text describing the problem statement",
-    }),
+    ,
   problemCategories: z
     .array(
       z.object({
-        title: z.string().min(3).max(30).meta({
-          description: "Title of the problem category",
-        }),
-        description: z.string().min(20).max(100).meta({
-          description: "Description of the problem category",
-        }),
-        icon: IconSchema.optional().meta({
-          description: "Optional icon for the problem category",
-        }),
+        title: z.string().min(3).max(30),
+        description: z.string().min(20).max(100),
+        icon: IconSchema.optional(),
       }),
     )
     .min(2)
@@ -79,16 +69,9 @@ const problemStatementSlideSchema = z.object({
         },
       },
     ])
-    .meta({
-      description:
-        "List of problem categories with titles, descriptions, and optional icons",
-    }),
-  companyName: z.string().min(2).max(50).default("chatzone").meta({
-    description: "Company name displayed in header",
-  }),
-  date: z.string().min(5).max(30).default("June 13, 2038").meta({
-    description: "Today Date displayed in header",
-  }),
+    ,
+  companyName: z.string().min(2).max(50).default("chatzone"),
+  date: z.string().min(5).max(30).default("June 13, 2038"),
 });
 
 export const Schema = problemStatementSlideSchema;

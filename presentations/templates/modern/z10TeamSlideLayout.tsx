@@ -8,28 +8,16 @@ export const layoutDescription =
   "A clean modern team slide showcasing team members with professional profiles and blue-white design.";
 
 const teamMemberSchema = z.object({
-  name: z.string().min(2).max(50).meta({
-    description: "Team member's full name",
-  }),
-  position: z.string().min(2).max(50).meta({
-    description: "Job title or position",
-  }),
-  description: z.string().min(20).max(120).meta({
-    description: "Brief professional description of the team member",
-  }),
+  name: z.string().min(2).max(50),
+  position: z.string().min(2).max(50),
+  description: z.string().min(20).max(120),
   image: ImageSchema,
-  linkedIn: z.string().optional().meta({
-    description: "LinkedIn profile URL (optional)",
-  }),
+  linkedIn: z.string().optional(),
 });
 
 const modernTeamSlideSchema = z.object({
-  title: z.string().min(3).max(15).default("Our Team").meta({
-    description: "Main title of the slide",
-  }),
-  subtitle: z.string().min(10).max(120).optional().meta({
-    description: "Optional subtitle describing the team",
-  }),
+  title: z.string().min(3).max(15).default("Our Team"),
+  subtitle: z.string().min(10).max(120).optional(),
   teamMembers: z
     .array(teamMemberSchema)
     .min(2)
@@ -80,15 +68,9 @@ const modernTeamSlideSchema = z.object({
         },
       },
     ])
-    .meta({
-      description: "List of team members with their information",
-    }),
-  companyName: z.string().min(2).max(50).default("chatzone").meta({
-    description: "Company name displayed in header",
-  }),
-  date: z.string().min(5).max(50).default("June 13, 2038").meta({
-    description: "Today Date displayed in header",
-  }),
+    ,
+  companyName: z.string().min(2).max(50).default("chatzone"),
+  date: z.string().min(5).max(50).default("June 13, 2038"),
 });
 
 export const Schema = modernTeamSlideSchema;

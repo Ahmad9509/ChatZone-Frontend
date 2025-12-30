@@ -7,15 +7,9 @@ export const layoutDescription = 'A professional table of contents layout with n
 
 const tableOfContentsSlideSchema = z.object({
     sections: z.array(z.object({
-        number: z.number().min(1).meta({
-            description: "Section number"
-        }),
-        title: z.string().min(1).max(80).meta({
-            description: "Section title"
-        }),
-        pageNumber: z.string().min(1).max(10).meta({
-            description: "Page number for this section"
-        })
+        number: z.number().min(1),
+        title: z.string().min(1).max(80),
+        pageNumber: z.string().min(1).max(10)
     })).default([
         { number: 1, title: "Problem", pageNumber: "03" },
         { number: 2, title: "Solution", pageNumber: "04" },
@@ -27,9 +21,7 @@ const tableOfContentsSlideSchema = z.object({
         { number: 8, title: "Business Model", pageNumber: "10" },
         { number: 9, title: "Competitive Advantage", pageNumber: "11" },
         { number: 10, title: "Team Member", pageNumber: "12" }
-    ]).meta({
-        description: "List of table of contents sections",
-    })
+    ])
 })
 
 export const Schema = tableOfContentsSlideSchema

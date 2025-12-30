@@ -7,25 +7,15 @@ export const layoutName = 'Metrics with Image'
 export const layoutDescription = 'A slide layout with supporting image on the left and title, description, and metrics grid on the right. Can be used alternatively with MetricSlide.'
 
 const metricsWithImageSlideSchema = z.object({
-    title: z.string().min(3).max(40).default('Competitive Advantage').meta({   
-        description: "Main title of the slide",
-    }),
-    description: z.string().min(10).max(150).default('Ginyard International Co. stands out by offering custom digital solutions tailored to client needs, alongside long-term support to ensure lasting relationships and continuous adaptation.').meta({
-        description: "Description text below the title",
-    }),
+    title: z.string().min(3).max(40).default('Competitive Advantage'),
+    description: z.string().min(10).max(150).default('Ginyard International Co. stands out by offering custom digital solutions tailored to client needs, alongside long-term support to ensure lasting relationships and continuous adaptation.'),
     image: ImageSchema.default({
         __image_url__: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
         __image_prompt__: 'Person holding tablet with analytics dashboard and charts'
-    }).meta({
-        description: "Supporting image for the slide",
     }),
     metrics: z.array(z.object({
-        label: z.string().min(2).max(100).meta({
-            description: "Metric label/title"
-        }),
-        value: z.string().min(1).max(20).meta({
-            description: "Metric value (e.g., 200+, 95%, 50%)"
-        }),
+        label: z.string().min(2).max(100),
+        value: z.string().min(1).max(20),
     })).min(1).max(3).default([
         {
             label: 'Satisfied Clients',
@@ -36,9 +26,7 @@ const metricsWithImageSlideSchema = z.object({
             value: '95%'
         },
         
-    ]).meta({
-        description: "List of key business metrics to display",
-    })
+    ])
 })
 
 export const Schema = metricsWithImageSlideSchema
