@@ -48,6 +48,7 @@ export interface User {
   username?: string;
   tier: 'free' | 'pro' | 'premium';
   preferredModelId?: string;
+  newChatDraft?: string;
 }
 
 export interface Model {
