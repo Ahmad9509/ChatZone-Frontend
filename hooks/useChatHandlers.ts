@@ -291,7 +291,7 @@ export function useChatHandlers(params: UseChatHandlersParams) {
       messageIndex,
       directive,
       setRegenerating,
-      setRegenerateStreamedContent,
+      setRegenerateStreamedContent: (val) => setRegenerateStreamedContent(typeof val === "function" ? val("") : val),
       setRegeneratingForParentId,
       setShowRegenerateMenu,
       setCurrentConversation,
