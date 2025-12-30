@@ -23,7 +23,7 @@ interface UseChatHandlersParams {
   
   // File and memory state
   attachedFiles: any[];
-  setAttachedFiles: (files: any[]) => void;
+  setAttachedFiles: (files: any[] | ((prev: any[]) => any[])) => void;
   totalMemoryUsed: number;
   setTotalMemoryUsed: (memory: number) => void;
   
