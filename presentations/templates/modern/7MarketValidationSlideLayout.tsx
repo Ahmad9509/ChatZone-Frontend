@@ -3,7 +3,7 @@ import * as z from "zod";
 import { Card } from "@/components/ui/card";
 import { Table, TableHeader, TableBody } from "@/components/ui/table";
 import { ChartContainer } from "@/components/ui/chart";
-import { ImageSchema } from "@/presentation-templates/defaultSchemes";
+import { ImageSchema } from "@/presentations/templates/defaultSchemes";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Cell } from "recharts";
 
 export const layoutId = "market-validation-slide";

@@ -1,6 +1,6 @@
 import React from 'react'
 import * as z from "zod";
-import { IconSchema } from '@/presentation-templates/defaultSchemes';
+import { IconSchema } from '@/presentations/templates/defaultSchemes';
 import { RemoteSvgIcon } from '@/app/hooks/useRemoteSvgIcon';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, AreaChart, Area, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Cell, ResponsiveContainer } from "recharts";

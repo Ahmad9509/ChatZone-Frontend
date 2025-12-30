@@ -1,7 +1,7 @@
 import React from "react"
 import * as z from "zod"
 
-import { IconSchema, ImageSchema } from '@/presentation-templates/defaultSchemes';
+import { IconSchema, ImageSchema } from '@/presentations/templates/defaultSchemes';
 import { RemoteSvgIcon } from "@/app/hooks/useRemoteSvgIcon";
 
 const layoutId = "bullet-with-icons-title-description"

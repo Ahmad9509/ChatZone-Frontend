@@ -2,7 +2,7 @@ import * as z from "zod";
 // Note:
 // If you want to use images and icons, you must use ImageSchema and IconSchema
 // Images and icons are the only media types supported for PDF and PPTX exports
-import { ImageSchema, IconSchema } from "@/presentation-templates/defaultSchemes";
+import { ImageSchema, IconSchema } from "@/presentations/templates/defaultSchemes";
 
 
 // Schema definition

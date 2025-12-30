@@ -1,6 +1,6 @@
 import React from "react";
 import * as z from "zod";
-import { IconSchema } from "@/presentation-templates/defaultSchemes";
+import { IconSchema } from "@/presentations/templates/defaultSchemes";
 
 export const layoutId = "solution-slide";
 export const layoutName = "Solution Slide";

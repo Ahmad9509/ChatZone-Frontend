@@ -1,6 +1,6 @@
 import React from "react";
 import * as z from "zod";
-import { ImageSchema } from "@/presentation-templates/defaultSchemes";
+import { ImageSchema } from "@/presentations/templates/defaultSchemes";
 
 export const layoutId = "market-size-pitchdeck-slide";
 export const layoutName = "Market Size Pitch Deck Slide";

@@ -1,6 +1,6 @@
 import React from "react";
 import * as z from "zod";
-import { ImageSchema, IconSchema } from "@/presentation-templates/defaultSchemes";
+import { ImageSchema, IconSchema } from "@/presentations/templates/defaultSchemes";
 
 export const layoutId = "problem-statement-slide";
 export const layoutName = "Problem Statement Slide";

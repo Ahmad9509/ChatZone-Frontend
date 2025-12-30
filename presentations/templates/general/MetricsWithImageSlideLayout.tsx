@@ -1,6 +1,6 @@
 import React from 'react'
 import * as z from "zod";
-import { ImageSchema } from '@/presentation-templates/defaultSchemes';
+import { ImageSchema } from '@/presentations/templates/defaultSchemes';
 
 export const layoutId = 'metrics-with-image-slide'
 export const layoutName = 'Metrics with Image'

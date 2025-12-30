@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { ImageSchema, IconSchema } from "@/presentation-templates/defaultSchemes";
+import { ImageSchema, IconSchema } from "@/presentations/templates/defaultSchemes";
 
 export const Schema = z.object({
   title: z.string().min(5).max(50).default("Quarterly Business Review").meta({
