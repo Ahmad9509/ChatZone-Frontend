@@ -13,7 +13,7 @@ interface UseChatHandlersParams {
   streaming: boolean;
   setStreaming: (streaming: boolean) => void;
   streamedContent: string;
-  setStreamedContent: (content: string) => void;
+  setStreamedContent: (val: string | ((prev: string) => string)) => void;
   
   // Conversation state
   currentConversation: any;

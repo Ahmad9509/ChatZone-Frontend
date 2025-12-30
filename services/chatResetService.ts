@@ -2,7 +2,7 @@
 interface ResetChatParams {
   setCurrentConversation: (conv: any) => void;
   setMessage: (msg: string) => void;
-  setStreamedContent: (content: string) => void;
+  setStreamedContent: (val: string | ((prev: string) => string)) => void;
   setStreaming: (streaming: boolean) => void;
   setSelectedActions: (actions: any) => void;
   setAttachedFiles: (files: any[]) => void;
