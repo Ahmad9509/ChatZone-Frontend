@@ -47,17 +47,17 @@ export default function ExampleSlideLayout({ data }: { data: SchemaType }) {
       </header>
 
       <main className="slide-content flex-1 flex">
-        {chartImage?.__image_url__ && (
+        {chartImage?.__image_url__ ? (
           <div className="chart-section flex-1">
             <img
               src={chartImage.__image_url__}
-              alt={chartImage.__image_prompt__}
+              alt={chartImage.__image_prompt__ || ""}
               className="w-full h-auto max-h-96 object-contain"
             />
           </div>
-        )}
+        ) : null}
 
-        {metrics && metrics.length > 0 && (
+        {metrics && metrics.length > 0 ? (
           <div className="metrics-section w-1/3 ml-6">
             <h2 className="text-2xl font-semibold mb-4">Key Metrics</h2>
             {metrics.map((metric, index) => (
@@ -67,13 +67,13 @@ export default function ExampleSlideLayout({ data }: { data: SchemaType }) {
               >
                 <div className="flex items-center justify-between">
                   <span className="font-medium">{metric.label}</span>
-                  {trendIcon?.__icon_url__ && (
+                  {trendIcon?.__icon_url__ ? (
                     <img
                       src={trendIcon.__icon_url__}
                       alt={metric.trend}
                       className="w-6 h-6"
                     />
-                  )}
+                  ) : null}
                 </div>
                 <span className="text-2xl font-bold text-blue-600">
                   {metric.value}
@@ -81,7 +81,7 @@ export default function ExampleSlideLayout({ data }: { data: SchemaType }) {
               </div>
             ))}
           </div>
-        )}
+        ) : null}
       </main>
     </div>
   );
