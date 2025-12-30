@@ -5,7 +5,7 @@ interface ResetChatParams {
   setStreamedContent: (val: string | ((prev: string) => string)) => void;
   setStreaming: (streaming: boolean) => void;
   setSelectedActions: (actions: any) => void;
-  setAttachedFiles: (files: any[]) => void;
+  setAttachedFiles: (files: any[] | ((prev: any[]) => any[])) => void;
   setTotalMemoryUsed: (memory: number) => void;
   setHoveredUserMessageId: (id: string | null) => void;
   setResearchProgress: (progress: string) => void;
